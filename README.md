@@ -1,4 +1,4 @@
-# 内容管理平台
+# 2026年度奖学金评定专题网站
 
 基于 Vue 3 + Spring Boot 构建的现代化内容管理系统，专为奖学金评定专题设计。
 
@@ -35,6 +35,7 @@
 - 🗂️ **菜单管理** - 动态菜单配置
 - 👤 **用户管理** - 用户账号管理
 
+
 ## 项目结构
 
 ```
@@ -49,7 +50,9 @@ vite-content-platform/
 │   │       ├── config/         # 配置类
 │   │       └── common/         # 公共类
 │   └── src/main/resources/
-│       └── application.yml     # 配置文件
+│       ├── application.yml     # 配置文件
+│       └── db/
+│           └── init.sql        # 数据库初始化脚本
 ├── src/                        # 前端项目
 │   ├── api/                    # API 接口
 │   ├── components/             # 公共组件
@@ -78,10 +81,9 @@ vite-content-platform/
 CREATE DATABASE theme_platform DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-2. 执行数据库迁移（如有）
-```sql
--- 添加文章置顶字段
-ALTER TABLE article ADD COLUMN is_top INT DEFAULT 0 COMMENT '是否置顶 0-否 1-是';
+2. 执行数据库初始化脚本
+```bash
+mysql -u root -p theme_platform < backend/src/main/resources/db/init.sql
 ```
 
 3. 修改后端配置
@@ -90,7 +92,7 @@ ALTER TABLE article ADD COLUMN is_top INT DEFAULT 0 COMMENT '是否置顶 0-否 
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/theme_platform?useSSL=false&serverTimezone=UTC
-    username: root
+    username: your_root
     password: your_password
 ```
 
@@ -115,7 +117,6 @@ mvn spring-boot:run
 4. 访问应用
 - 前台首页: http://localhost:5173/
 - 后台管理: http://localhost:5173/admin
-- API 文档: http://localhost:8080/swagger-ui.html
 
 ### 默认账号
 - 用户名: `admin`
@@ -161,6 +162,3 @@ mvn clean package
 - 使用 MyBatis-Plus 简化数据库操作
 - 统一返回格式 `Result<T>`
 
-## 许可证
-
-MIT License
