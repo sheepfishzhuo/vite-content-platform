@@ -1,6 +1,7 @@
 # 2026年度研究生奖学金评定专题网站
 
 基于 Vue 3 + Spring Boot 构建的现代化内容管理系统，专为奖学金评定专题设计。
+仿国考网站设计，提供专业的内容管理和展示功能。
 
 ## 技术栈
 
@@ -57,10 +58,34 @@ vite-content-platform/
 │   ├── api/                    # API 接口
 │   ├── components/             # 公共组件
 │   ├── layouts/                # 布局组件
+│   │   ├── MainLayout.vue      # 后台布局
+│   │   └── FrontendLayout.vue  # 前台布局
 │   ├── router/                 # 路由配置
 │   ├── stores/                 # 状态管理
 │   ├── utils/                  # 工具函数
 │   └── views/                  # 页面组件
+│       ├── admin/              # 后台管理页面
+│       │   ├── Login.vue       # 登录页
+│       │   ├── Home.vue        # 后台首页
+│       │   ├── content/        # 内容管理
+│       │   │   ├── article/    # 文章管理
+│       │   │   │   ├── List.vue
+│       │   │   │   └── Edit.vue
+│       │   │   ├── Section.vue     # 区块管理
+│       │   │   ├── Announcement.vue # 公告管理
+│       │   │   └── QuickEntry.vue  # 快速入口
+│       │   ├── system/         # 系统管理
+│       │   │   ├── Menu.vue    # 菜单管理
+│       │   │   ├── User.vue    # 用户管理
+│       │   │   └── Profile.vue # 个人中心
+│       │   └── frontend/       # 前台管理
+│       │       └── Member.vue  # 前台用户管理
+│       └── frontend/           # 前台展示页面
+│           ├── Home.vue        # 首页
+│           ├── Register.vue    # 注册页
+│           ├── ArticleDetail.vue # 文章详情
+│           ├── ArticleList.vue # 文章列表
+│           └── SectionPage.vue # 区块页面
 ├── public/                     # 静态资源
 ├── package.json                # 前端依赖
 └── pom.xml                     # 后端依赖
