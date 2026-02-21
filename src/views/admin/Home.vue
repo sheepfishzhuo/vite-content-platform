@@ -3,7 +3,7 @@
     <div class="welcome-card">
       <div class="welcome-content">
         <div class="welcome-text">
-          <h2>欢迎使用2026年度奖学金评定专题网站管理后台</h2>
+          <h2>欢迎使用电信学院研究生奖学金评定专题网站管理后台</h2>
           <p>这是一个基于 Vue 3 + Spring Boot 构建的现代化管理系统</p>
         </div>
         <div class="welcome-icon">

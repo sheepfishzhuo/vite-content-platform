@@ -69,7 +69,7 @@
         <router-view />
       </el-main>
       <el-footer class="footer">
-        Copyright © 2026年度奖学金评定专题网站管理后台
+        Copyright © 2023-2026 电信学院 研究生奖学金评定专题网站管理后台
       </el-footer>
     </el-container>
   </el-container>
@@ -111,9 +111,9 @@ function toggleFullScreen() {
   }
 }
 
-function handleCommand(command) {
+async function handleCommand(command) {
   if (command === 'logout') {
-    userStore.logout()
+    await userStore.logout()
     ElMessage.success('已退出登录')
     router.push('/login')
   } else if (command === 'profile') {
@@ -187,6 +187,17 @@ onMounted(() => {
   line-height: 48px;
   margin: 4px 8px;
   border-radius: 8px;
+}
+
+:deep(.el-menu--collapse .el-menu-item),
+:deep(.el-menu--collapse .el-sub-menu__title) {
+  justify-content: center;
+  padding: 0 !important;
+}
+
+:deep(.el-menu--collapse .el-menu-item .el-icon),
+:deep(.el-menu--collapse .el-sub-menu__title .el-icon) {
+  margin: 0;
 }
 
 :deep(.el-menu-item.is-active) {

@@ -233,7 +233,7 @@ onMounted(() => {
 .article-body {
   background: #fff;
   border-radius: 16px;
-  padding: 32px;
+  padding: 64px 96px;
   margin-bottom: 24px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }

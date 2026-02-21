@@ -36,11 +36,11 @@
 
       <el-table :data="articles" v-loading="loading" stripe>
         <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="title" label="标题" min-width="200">
+        <el-table-column prop="title" label="标题" min-width="200" show-overflow-tooltip>
           <template #default="{ row }">
             <div class="title-cell">
               <el-tag v-if="row.isTop" type="danger" size="small" class="top-tag">置顶</el-tag>
-              <span>{{ row.title }}</span>
+              <span class="title-text">{{ row.title }}</span>
             </div>
           </template>
         </el-table-column>
@@ -200,9 +200,17 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .top-tag {
   flex-shrink: 0;
+}
+
+.title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* max-width: 280px; */
 }
 </style>

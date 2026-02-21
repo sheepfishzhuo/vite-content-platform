@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'Login',
-      component: () => import('@/views/Login.vue'),
+      component: () => import('@/views/admin/Login.vue'),
       meta: { title: '登录' }
     },
     {
@@ -20,6 +20,12 @@ const router = createRouter({
           name: 'FrontendHome',
           component: () => import('@/views/frontend/Home.vue'),
           meta: { title: '首页' }
+        },
+        {
+          path: 'register',
+          name: 'Register',
+          component: () => import('@/views/frontend/Register.vue'),
+          meta: { title: '注册' }
         },
         {
           path: 'article/:id',
@@ -49,7 +55,7 @@ const router = createRouter({
         {
           path: '',
           name: 'AdminHome',
-          component: () => import('@/views/Home.vue'),
+          component: () => import('@/views/admin/Home.vue'),
           meta: { title: '管理端' }
         },
         {
@@ -58,20 +64,38 @@ const router = createRouter({
             {
               path: 'articles',
               name: 'ArticleListAdmin',
-              component: () => import('@/views/article/List.vue'),
+              component: () => import('@/views/admin/content/article/List.vue'),
               meta: { title: '文章列表' }
             },
             {
               path: 'publish',
               name: 'ArticlePublish',
-              component: () => import('@/views/article/Edit.vue'),
+              component: () => import('@/views/admin/content/article/Edit.vue'),
               meta: { title: '发布文章' }
             },
             {
               path: 'publish/:id',
               name: 'ArticleEdit',
-              component: () => import('@/views/article/Edit.vue'),
+              component: () => import('@/views/admin/content/article/Edit.vue'),
               meta: { title: '编辑文章' }
+            },
+            {
+              path: 'sections',
+              name: 'SectionManagement',
+              component: () => import('@/views/admin/content/Section.vue'),
+              meta: { title: '区块管理' }
+            },
+            {
+              path: 'announcements',
+              name: 'AnnouncementManagement',
+              component: () => import('@/views/admin/content/Announcement.vue'),
+              meta: { title: '公告管理' }
+            },
+            {
+              path: 'quick-entries',
+              name: 'QuickEntryManagement',
+              component: () => import('@/views/admin/content/QuickEntry.vue'),
+              meta: { title: '快速入口' }
             }
           ]
         },
@@ -81,38 +105,31 @@ const router = createRouter({
             {
               path: 'menus',
               name: 'MenuManagement',
-              component: () => import('@/views/system/Menu.vue'),
+              component: () => import('@/views/admin/system/Menu.vue'),
               meta: { title: '菜单管理' }
-            },
-            {
-              path: 'sections',
-              name: 'SectionManagement',
-              component: () => import('@/views/system/Section.vue'),
-              meta: { title: '区块管理' }
-            },
-            {
-              path: 'announcements',
-              name: 'AnnouncementManagement',
-              component: () => import('@/views/system/Announcement.vue'),
-              meta: { title: '公告管理' }
-            },
-            {
-              path: 'quick-entries',
-              name: 'QuickEntryManagement',
-              component: () => import('@/views/system/QuickEntry.vue'),
-              meta: { title: '快速入口' }
             },
             {
               path: 'users',
               name: 'UserManagement',
-              component: () => import('@/views/system/User.vue'),
+              component: () => import('@/views/admin/system/User.vue'),
               meta: { title: '用户管理' }
             },
             {
               path: 'profile',
               name: 'Profile',
-              component: () => import('@/views/system/Profile.vue'),
+              component: () => import('@/views/admin/system/Profile.vue'),
               meta: { title: '个人中心' }
+            }
+          ]
+        },
+        {
+          path: 'frontend',
+          children: [
+            {
+              path: 'members',
+              name: 'MemberManagement',
+              component: () => import('@/views/admin/frontend/Member.vue'),
+              meta: { title: '前台用户管理' }
             }
           ]
         }
@@ -122,7 +139,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title ? `${to.meta.title} - 2026年度奖学金评定专题` : '2026年度奖学金评定专题'
+  document.title = to.meta.title ? `${to.meta.title} - 研究生奖学金评定专题` : '研究生奖学金评定专题'
   
   const token = localStorage.getItem('token')
   

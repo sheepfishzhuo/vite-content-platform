@@ -19,7 +19,7 @@
         </div>
         <div class="banner-right">
           <h2>电子与信息工程学院</h2>
-          <h3>2026年度奖学金评定专题</h3>
+          <h3>2026年度研究生奖学金评定专题</h3>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
           <a href="#">隐私政策</a>
           <a href="#">使用条款</a>
         </div>
-        <p>© 2026年度奖学金评定专题网站</p>
+        <p>© 2023-2026 电信学院 研究生奖学金评定专题网站</p>
       </div>
     </el-footer>
   </div>
@@ -134,7 +134,7 @@ onMounted(async () => {
 }
 
 .banner {
-  background: linear-gradient(180deg, #fffbd9 0%, #f5e6b8 100%);
+  background: transparent;
   padding: 32px 24px;
   position: relative;
   overflow: hidden;
@@ -143,7 +143,7 @@ onMounted(async () => {
 .banner-bg {
   position: absolute;
   inset: 0;
-  background: url('bj.jpg') center/cover;
+  background: url('/bj.jpg') center/cover;
   opacity: 0.15;
 }
 

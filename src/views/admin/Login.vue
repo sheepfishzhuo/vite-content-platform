@@ -6,8 +6,8 @@
           <div class="logo">
             <el-icon :size="40" color="#667eea"><Platform /></el-icon>
           </div>
-          <h2>2026年度奖学金评定专题网站管理后台</h2>
-          <p>2026年度奖学金评定专题网站管理后台</p>
+          <h2>电信学院2026年度研究生奖学金评定</h2>
+          <h2>专题网站管理后台</h2>
         </div>
         
         <el-form
@@ -52,10 +52,14 @@
               登 录
             </el-button>
           </el-form-item>
+
+          <!-- <div class="register-link">
+            还没有账号？<router-link to="/register">立即注册</router-link>
+          </div> -->
         </el-form>
         
         <div class="login-footer">
-          <p>© 2026年度奖学金评定专题网站管理后台</p>
+          <p>© 2023-2026</p>
         </div>
       </div>
     </div>
@@ -144,7 +148,7 @@ async function handleLogin() {
 }
 
 .login-card {
-  width: 420px;
+  width: 520px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 16px;
@@ -210,6 +214,23 @@ async function handleLogin() {
 .login-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 16px;
+  color: #909399;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
 
 .login-footer {

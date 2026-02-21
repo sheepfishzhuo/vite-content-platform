@@ -11,7 +11,7 @@
  Target Server Version : 80407 (8.4.7)
  File Encoding         : 65001
 
- Date: 21/02/2026 00:01:55
+ Date: 21/02/2026 13:23:46
 */
 
 SET NAMES utf8mb4;
@@ -68,12 +68,38 @@ CREATE TABLE `article`  (
 INSERT INTO `article` VALUES (1, '政策1', 'Vue 3 组合式 API 介绍', '<p>Vue 3 是一个渐进式 JavaScript 框架...</p><h2>123</h2>', NULL, 1, NULL, 1, 100, '2026-02-20 18:16:37', '2026-02-20 18:16:37', 0);
 INSERT INTO `article` VALUES (2, '政策2', 'Spring Boot 快速入门', '<p>Spring Boot 简化了 Spring 应用开发...</p>', NULL, 1, NULL, 1, 200, '2026-02-20 18:16:38', '2026-02-20 22:54:13', 0);
 INSERT INTO `article` VALUES (3, '政策3', '内容平台正式上线', '<p>欢迎大家使用内容管理平台...</p>', NULL, 1, NULL, 1, 50, '2026-02-20 18:16:39', '2026-02-20 22:54:29', 0);
-INSERT INTO `article` VALUES (4, '政策4', '政策4', '<p>政策4</p>', '', 1, NULL, 1, 0, '2026-02-20 22:48:51', '2026-02-20 22:51:32', 1);
+INSERT INTO `article` VALUES (4, '政策4', '政策4', '政策4', '', 1, NULL, 1, 0, '2026-02-20 22:48:51', '2026-02-20 22:51:32', 1);
 INSERT INTO `article` VALUES (5, '政策5', '政策5', '<p>政策5</p>', '', 1, NULL, 1, 0, '2026-02-20 22:51:11', '2026-02-20 22:51:11', 0);
 INSERT INTO `article` VALUES (6, '常见问题1', '常见问题1', '<p>常见问题1</p>', '', 2, NULL, 1, 0, '2026-02-20 23:07:03', '2026-02-20 23:18:55', 0);
 INSERT INTO `article` VALUES (7, '常见问题2', '常见问题2', '<p>常见问题2</p>', '', 2, NULL, 1, 0, '2026-02-20 23:07:42', '2026-02-20 23:18:57', 0);
-INSERT INTO `article` VALUES (8, ' 政策6', ' 政策6', '<p> 政策6</p>', '', 1, NULL, 1, 0, '2026-02-20 23:13:52', '2026-02-20 23:19:00', 0);
+INSERT INTO `article` VALUES (8, '政策6', ' 政策6', '<p> 政策6</p>', '', 1, NULL, 1, 0, '2026-02-20 23:13:52', '2026-02-20 23:19:00', 0);
 INSERT INTO `article` VALUES (9, '政策7', '政策7', '<p>政策7</p>', '', 1, NULL, 1, 0, '2026-02-20 23:21:35', '2026-02-20 23:21:35', 0);
+
+-- ----------------------------
+-- Table structure for member
+-- ----------------------------
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member`  (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '学号',
+  `real_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '姓名',
+  `grade` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '年级(20XX)',
+  `graduate_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '研究生类别(学术型/专业型)',
+  `major` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '专业(通信/计算机)',
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '手机号',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
+  `status` tinyint NULL DEFAULT 1 COMMENT '状态 0-禁用 1-启用',
+  `created_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `student_id`(`student_id` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '前台用户表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of member
+-- ----------------------------
+INSERT INTO `member` VALUES (1, '131212', 'lamb', '2023', '学术型', '计算机', 'lamb@qq.com', '18888888888', '$2a$10$PWY0pY3DR.7X9uVl8uBcPeg.iI1ApwE91C2c6B3w3Vh.6ltmEVCna', 1, '2026-02-21 11:19:18', '2026-02-21 11:19:18');
 
 -- ----------------------------
 -- Table structure for menu
@@ -98,14 +124,16 @@ CREATE TABLE `menu`  (
 -- Records of menu
 -- ----------------------------
 INSERT INTO `menu` VALUES (1, '内容管理', '/admin/content', 0, 1, 'Document', NULL, 0, 'admin', '2026-02-20 18:16:37', '2026-02-20 18:16:37');
-INSERT INTO `menu` VALUES (2, '文章列表', '/admin/content/articles', 1, 1, 'List', 'article/List.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-20 18:16:37');
-INSERT INTO `menu` VALUES (3, '发布文章', '/admin/content/publish', 1, 2, 'Edit', 'article/Edit.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-20 18:16:37');
+INSERT INTO `menu` VALUES (2, '文章列表', '/admin/content/articles', 1, 1, 'List', 'admin/content/article/List.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-21 12:28:16');
+INSERT INTO `menu` VALUES (3, '发布文章', '/admin/content/publish', 1, 2, 'Edit', 'admin/content/article/Edit.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-21 12:28:25');
 INSERT INTO `menu` VALUES (4, '系统管理', '/admin/system', 0, 2, 'Setting', NULL, 0, 'admin', '2026-02-20 18:16:37', '2026-02-20 23:42:15');
-INSERT INTO `menu` VALUES (5, '菜单管理', '/admin/system/menus', 4, 1, 'Menu', 'system/Menu.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-20 23:42:35');
-INSERT INTO `menu` VALUES (6, '区块管理', '/admin/system/sections', 1, 3, 'Grid', 'system/Section.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-20 23:42:42');
-INSERT INTO `menu` VALUES (7, '用户管理', '/admin/system/users', 4, 2, 'User', 'system/User.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-20 23:42:47');
-INSERT INTO `menu` VALUES (8, '公告管理', '/admin/system/announcements', 1, 4, 'List', 'views/system/Announcement.vue', 0, 'admin', '2026-02-20 19:47:50', '2026-02-20 23:42:51');
-INSERT INTO `menu` VALUES (9, '快速入口', '/admin/system/quick-entries', 1, 5, 'Guide', 'views/system/QuickEntry.vue', 0, 'admin', '2026-02-20 19:47:50', '2026-02-20 23:42:54');
+INSERT INTO `menu` VALUES (5, '菜单管理', '/admin/system/menus', 4, 1, 'Menu', 'admin/system/Menu.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-21 12:29:01');
+INSERT INTO `menu` VALUES (6, '区块管理', '/admin/content/sections', 1, 3, 'Grid', 'admin/content/Section.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-21 12:29:58');
+INSERT INTO `menu` VALUES (7, '用户管理', '/admin/system/users', 4, 2, 'User', 'admin/system/User.vue', 0, 'admin', '2026-02-20 18:16:37', '2026-02-21 12:30:01');
+INSERT INTO `menu` VALUES (8, '公告管理', '/admin/content/announcements', 1, 4, 'List', 'admin/content/Announcement.vue', 0, 'admin', '2026-02-20 19:47:50', '2026-02-21 12:30:18');
+INSERT INTO `menu` VALUES (9, '快速入口', '/admin/content/quick-entries', 1, 5, 'Guide', 'admin/content/QuickEntry.vue', 0, 'admin', '2026-02-20 19:47:50', '2026-02-21 12:30:59');
+INSERT INTO `menu` VALUES (10, '前台用户管理', '/admin/frontend/members', 11, 3, 'Histogram', 'admin/frontend/Member.vue', 0, 'admin', '2026-02-21 11:14:05', '2026-02-21 12:38:03');
+INSERT INTO `menu` VALUES (11, '前台管理', '/admin/frontend', 0, 3, 'UserFilled', NULL, 0, 'admin', '2026-02-21 12:13:20', '2026-02-21 12:13:20');
 
 -- ----------------------------
 -- Table structure for quick_entry
@@ -130,8 +158,8 @@ CREATE TABLE `quick_entry`  (
 -- ----------------------------
 -- Records of quick_entry
 -- ----------------------------
-INSERT INTO `quick_entry` VALUES (1, '用户注册', '/', 'User', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', '', 1, 1, '2026-02-20 19:21:21', '2026-02-20 22:22:15');
-INSERT INTO `quick_entry` VALUES (2, '国家奖学金入口', '/', 'Flag', 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', '', 2, 1, '2026-02-20 19:21:21', '2026-02-20 22:25:57');
+INSERT INTO `quick_entry` VALUES (1, '用户注册', '/register', 'User', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', '', 1, 1, '2026-02-20 19:21:21', '2026-02-21 10:16:30');
+INSERT INTO `quick_entry` VALUES (2, '国家奖学金入口', '/', 'Flag', 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', '', 2, 1, '2026-02-20 19:21:21', '2026-02-21 10:09:46');
 INSERT INTO `quick_entry` VALUES (3, '学业奖学金入口', '/', 'Promotion', 'linear-gradient(135deg, #4481eb 0%, #04befe 100%)', '', 3, 1, '2026-02-20 19:21:21', '2026-02-20 22:27:35');
 INSERT INTO `quick_entry` VALUES (4, '疑难问题反馈', '/', 'Bell', 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)', '', 4, 1, '2026-02-20 19:21:21', '2026-02-20 22:27:54');
 
@@ -154,7 +182,7 @@ CREATE TABLE `section`  (
 -- ----------------------------
 -- Records of section
 -- ----------------------------
-INSERT INTO `section` VALUES (1, '政策规定', '2027年度奖学金评定政策', 'list', 1, 1, '2026-02-20 18:16:37', '2026-02-20 23:22:24');
+INSERT INTO `section` VALUES (1, '政策规定', '2026年度奖学金评定政策', 'list', 1, 1, '2026-02-20 18:16:37', '2026-02-20 23:22:24');
 INSERT INTO `section` VALUES (2, '常见问题', '奖学金评定系统使用方法解答', 'card', 2, 1, '2026-02-20 18:16:37', '2026-02-20 23:09:17');
 INSERT INTO `section` VALUES (3, '相关下载', '奖学金评定常用文档', 'compact', 3, 1, '2026-02-20 22:34:09', '2026-02-20 22:36:53');
 INSERT INTO `section` VALUES (4, '公告公示', '奖学金评定结果公示', 'list', 4, 1, '2026-02-20 22:35:52', '2026-02-20 22:46:26');
@@ -178,7 +206,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (2, 'admin', '$2a$10$RmXM20T5sAptN6ugsR5AaOs7y4o10IJR0.gyIKrucQkj3nZ96Gsva', 'admin@example.com', 'admin', 1, '2026-02-20 18:20:21');
+INSERT INTO `user` VALUES (2, 'admin', '$2a$10$a4h2dgOG4sEu9U/8WMMM2ONnsRpWz7jAovzqq456hcVAuWhVI9udi', 'admin@example.com', 'admin', 1, '2026-02-20 18:20:21');
 INSERT INTO `user` VALUES (3, 'yyz', '$2a$10$k6G.UuW0hnurvO.4dfQyXenUDPGa1wY1i9sN/scqIJQZNPJmT8Ujq', '2678660795@qq.com', 'user', 1, '2026-02-20 18:23:03');
 
 SET FOREIGN_KEY_CHECKS = 1;

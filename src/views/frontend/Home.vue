@@ -302,6 +302,7 @@ onMounted(async () => {
 
 .announcement-title {
   flex: 1;
+  min-width: 0;
   font-size: 14px;
   color: #303133;
   overflow: hidden;
